@@ -19,7 +19,7 @@ h1{
 color:rgb(99, 99, 99);
 font-size: 15rem;
 align-items: center;
-background-color: aquamarine;
+
 
 
 
@@ -34,7 +34,7 @@ padding-top: 40px ;
 
 }
 .tools img {
-width: 30rem;
+width: 25rem;
 background-color: whitesmoke;
 border-radius: 40px;
 align-items: center;
@@ -53,4 +53,16 @@ padding-left: 400px;
 
 
 }
+footer img{
+width: 8rem;
+float: right;
 
+
+}
+footer {
+position: relative;
+margin-top:850px;
+padding-right: 30px;
+
+
+}
