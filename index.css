@@ -5,6 +5,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+html{
+
+
+}
 body{
 
 width: 100%;
@@ -18,15 +22,11 @@ min-height: 100vh;
 
 h1{
 color:rgb(235, 235, 235);
-font-size: 15rem;
+font-size: 4rem;
 align-items: center;
 text-align: center;
 position: relative;
-padding-top: 500px;
-
-
-
-
+padding-top: 50px;
 
 
 }
@@ -36,23 +36,23 @@ text-decoration: none;
 }
 h2{
 color:rgb(255, 255, 255);
-font-size: 5rem;
+font-size: 1rem;
 align-items: center;
 justify-content: center;
-padding-top: 40px ;
+padding-top: 20px ;
 
 text-align: center;
 
 
 }
 .tools img {
-width: 25rem;
+width: 6rem;
 background-color: rgba(240, 240, 240, 0.823);
-border-radius: 40px;
+border-radius: 20px;
 align-items: center;
-box-shadow: 0 0 22px 1px rgb(255, 255, 255);
+box-shadow: 0 0 10px 1px rgb(255, 255, 255);
 border: 2px solid whitesmoke;
-padding: 30px;
+padding: 15px;
 display: block;
 margin: auto;
 
@@ -63,23 +63,20 @@ display: grid;
 justify-content: space-around;
 grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 position: relative;
-margin-top: 500px;
-
-
-
+margin-top: 170px;
 
 
 
 }
 footer img{
-width: 8rem;
+width: 2rem;
 float: right;
 
 
 }
 footer {
 position: relative;
-margin-top:750px;
+margin-top:50px;
 padding-right: 50px;
 
 
