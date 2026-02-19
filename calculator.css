@@ -41,9 +41,9 @@ justify-content: center;
 box-shadow: 0 0 3px 1px rgb(255, 255, 255);
 
 }
-input[value="dispaly"]{
+.display input{
   
-   width: 284px;
+   width: 285px;
    border-radius: 10px;
    border: 1PX solid whitesmoke;
    box-shadow: 0 0 10px 1px rgb(255, 255, 255);
