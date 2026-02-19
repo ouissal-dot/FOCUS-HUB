@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById("menu-toggle");
     
-    // Check if it exists before adding the listener
+    
     if (menuToggle) {
         menuToggle.addEventListener("click", () => {
             const navLinks = document.querySelector(".language-switcher");
@@ -60,7 +60,7 @@ function changeLanguage(lang) {
 /* calculator */
 
 document.addEventListener('keydown', function(event) {
-    const display = document.getElementById('display'); // Make sure your input has id="display"
+    const display = document.getElementById('display'); 
     const key = event.key;
 
     // 1. Numbers and Operators
@@ -68,7 +68,7 @@ document.addEventListener('keydown', function(event) {
         display.value += key;
     }
 
-    // 2. The "Enter" key for Equals (=)
+    // (=)
     if (key === "Enter") {
         event.preventDefault(); // Prevents the page from refreshing
         try {
@@ -78,12 +78,12 @@ document.addEventListener('keydown', function(event) {
         }
     }
 
-    // 3. The "Backspace" key for Delete (DEL)
+    // (DEL)
     if (key === "Backspace") {
         display.value = display.value.toString().slice(0, -1);
     }
 
-    // 4. The "Escape" key to Clear everything
+    // "Escape"
     if (key === "Escape") {
         display.value = "";
     }
