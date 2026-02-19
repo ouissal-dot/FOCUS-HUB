@@ -12,50 +12,55 @@
 <body>
 
 
-<h1>Focus Hub</h1>
+<h1 id="big title">Focus Hub</h1>
 <div class="tools">
 
 <div class="calculator"><a href="calculator.html">
         <img src="photos/1.png" >
-    <h2>Calculator</h2>
+    <h2 id="calculator">Calculator</h2>
 </a>
 
 </div>
 <div class="todolist">
     <img src="photos/2.png" >
-    <h2> To Do List</h2>
+    <h2 id="todolist"> To Do List</h2>
 </div>
 <div class="stopwatch">
     <img src="photos/3.png" >
-<h2>Stopwatch</h2>
+<h2 id="stopwatch">Stopwatch</h2>
 </div>
 <div class="game">
   <img src="photos/4.png" >
-<h2>Game</h2>
+<h2 id="game">Game</h2>
 </div>
 <div class="currency">
     <img src="photos/5.png" >
-<h2>Currency <br> Converter</h2>
+<h2 id="currency">Currency <br> Converter</h2>
 </div>
 <div class="weatherapp">
     <img src="photos/6.png" >
-<h2>Weather <br> app</h2>
+<h2 id="weather">Weather <br> app</h2>
 </div>
 <div class="pamadoro">
     <img src="photos/7.png" >
-<h2>Pamadoro</h2>
+<h2 id="pamadoro">Pamadoro</h2>
 </div>
 </div>
-
-
 
 
 
 <footer>
-<img src="photos/TRAD.png" >
+<div class="menu-toggle" id="menu-toggle"><img src="photos/TRAD.png" ></div>
+<div class="language-switcher">
+    <label for="lang-select">Language:</label>
+    <select id="lang-select" onchange="changeLanguage(this.value)">
+        <option value="en">English 🇬🇧</option>
+        <option value="de">Deutsch 🇩🇪</option>
+    </select>
+</div>
 
 </footer>
 
-  <script></script>  
+  <script src="focus.js"></script>
 </body>
 </html>

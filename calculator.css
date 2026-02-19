@@ -75,5 +75,9 @@ position: absolute;
 right: 5px;
 
 }
+input[type="button"]:hover {
+    background-color: #d1d1d1; 
+    border-color: #999;
+}
 
 

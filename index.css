@@ -76,4 +76,22 @@ position: absolute;
 right: 5px;
 
 }
+.tools img:hover{
+width: 6.3rem;
 
+
+}
+footer img:hover{
+width: 2.3rem;
+
+
+}
+  .language-switcher.active {
+    display: flex;
+  }
+.language-switcher {
+  display: none; 
+  position: absolute;
+ bottom: 30px;
+right: 30px;
+}
