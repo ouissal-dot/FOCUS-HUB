@@ -71,13 +71,9 @@ margin-top: 170px;
 footer img{
 width: 2rem;
 float: right;
-
-
-}
-footer {
-position: relative;
-margin-top:50px;
-padding-right: 50px;
-
+position: absolute;
+ bottom: 5px;
+right: 5px;
 
 }
+
