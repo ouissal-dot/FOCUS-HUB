@@ -5,10 +5,8 @@
   padding: 0;
   box-sizing: border-box;
 }
-html{
 
 
-}
 body{
 
 width: 100%;
@@ -86,12 +84,35 @@ width: 2.3rem;
 
 
 }
-  .language-switcher.active {
-    display: flex;
-  }
+.language-switcher.active {
+display: flex;
+}
 .language-switcher {
   display: none; 
   position: absolute;
  bottom: 30px;
 right: 30px;
 }
+
+@media (max-width: 768px) {
+
+.tools{
+display: grid;
+position: relative;
+margin-top: 40px;
+justify-content: space-around;
+grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+gap: 20px;
+
+
+
+}
+footer {
+position: relative;
+margin-top: 70px;
+}
+
+
+  
+  
+  }
