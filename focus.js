@@ -63,14 +63,14 @@ document.addEventListener('keydown', function(event) {
     const display = document.getElementById('display'); 
     const key = event.key;
 
-    // 1. Numbers and Operators
+    
     if ("0123456789+-*/.".includes(key)) {
         display.value += key;
     }
 
     // (=)
     if (key === "Enter") {
-        event.preventDefault(); // Prevents the page from refreshing
+        event.preventDefault(); 
         try {
             display.value = eval(display.value);
         } catch {
@@ -90,9 +90,73 @@ document.addEventListener('keydown', function(event) {
 });
 
 
+/* stopwatch */
 
-     
+/* stopwatch */
+document.addEventListener('DOMContentLoaded', () => {
+    
+    let hours = 0;
+    let minutes = 0;
+    let seconds = 0;
+    let tens = 0;
+    let Interval; // تعريف المتغير هنا ليكون متاحاً لكل الأزرار
 
+    const appendHours = document.querySelector("#hours");
+    const appendMinutes = document.querySelector("#minutes");
+    const appendSeconds = document.querySelector("#seconds");
+    const appendTens = document.querySelector("#tens");
+
+    const buttonStart = document.querySelector("#startb");
+    const buttonStop = document.querySelector("#stopb");
+    const buttonReset = document.querySelector("#resetb");
+
+    buttonStart.onclick = function() {
+        clearInterval(Interval);
+        Interval = setInterval(startTimer, 10);
+    };
+
+    buttonStop.onclick = function() {
+        clearInterval(Interval);
+    };
+
+    buttonReset.onclick = function() {
+        clearInterval(Interval);
+        // إعادة المتغيرات لأرقام وليس نصوص لتجنب الأخطاء الحسابية لاحقاً
+        hours = 0; minutes = 0; seconds = 0; tens = 0;
+        appendHours.innerHTML = "00";
+        appendMinutes.innerHTML = "00";
+        appendSeconds.innerHTML = "00";
+        appendTens.innerHTML = "00";
+    };
+
+    function startTimer() {
+        tens++;
+
+        // تنسيق أجزاء الثانية
+        appendTens.innerHTML = tens <= 9 ? "0" + tens : tens;
+
+        if (tens > 99) {
+            seconds++;
+            appendSeconds.innerHTML = seconds <= 9 ? "0" + seconds : seconds;
+            tens = 0;
+            appendTens.innerHTML = "00";
+
+            if (seconds > 59) {
+                minutes++;
+                appendMinutes.innerHTML = minutes <= 9 ? "0" + minutes : minutes;
+                seconds = 0;
+                appendSeconds.innerHTML = "00";
+
+                if (minutes > 59) {
+                    hours++;
+                    appendHours.innerHTML = hours <= 9 ? "0" + hours : hours;
+                    minutes = 0;
+                    appendMinutes.innerHTML = "00";
+                }
+            }
+        }
+    }
+});
 
 
 

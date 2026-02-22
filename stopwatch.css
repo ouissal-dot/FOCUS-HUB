@@ -18,18 +18,20 @@ color: whitesmoke;
 
 }
 
-h1{
+p {
+    font-size: 70px;
+    color: whitesmoke;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: monospace; /* Highly recommended for timers! */
+}
 
-color: whitesmoke;
-font-size: 70px;
-justify-content: center;
-align-items: center;
-position: relative;
-margin-bottom: 30px;
-width: 100%;
-padding-left: 80px;
-
-
+span{
+    font-size: 50px;
+    color: whitesmoke;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: monospace; /* Highly recommended for timers! */
 }
 
 .stopwatch{
@@ -43,17 +45,16 @@ box-shadow: 0 0 10px 1px rgb(255, 255, 255);
 
 }
 input{
-width: 140px;
-border: 1PX solid whitesmoke;
-font-weight: bold;
-justify-content: center;
-align-items: center;
-border-radius: 20px;
-height: 50px;
-margin: 15px;
-flex-wrap: wrap;
-
+    width: clamp(80px, 25vw, 120px); 
+    border: 1px solid whitesmoke;
+    font-weight: bold;
+    border-radius: 20px;
+    height: 50px;
+    margin: 8px; 
+    cursor: pointer;
+    transition: 0.3s;
 }
+
 
 input[value="Stop"]{
 box-shadow: 0 0 10px 1px rgb(164, 4, 4);
@@ -79,31 +80,23 @@ right: 5px;
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 400px) {
+    .time {
+        font-size: 2rem;
+    }
 
-
-.stopwatch{
- border: none;
-box-shadow:none;
-background-color: black;
-
+    input:active {
+    transform: scale(0.9);
 }
 
-.buttonclick input{
 
-justify-content: center;
-align-items: center;
-
-
-}
-
-h1{
-
-size: 1px;
-
-
+    p, span {
+        font-size: 2rem; 
+    }
+    input {
+        width: 50px;  
+        margin: 8px;
+        border-radius: 13px;
+    }
 
 }
-  
-  
-  }
