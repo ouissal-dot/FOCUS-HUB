@@ -44,19 +44,19 @@ gap: 20px;
 .carre{
  width: 125px;
  height: 125px;
-  background-color: #fff;
+  background-color: #ffffff;
   border: 2px solid #ddd;
 border-radius: 8px;
 display: flex;
  align-items: center;
 justify-content: center;
-font-size: 2.5rem;
+font-size: 3.5rem;
 font-weight: bold;
  cursor: pointer;
 transition: background-color 0.3s;
 
 }
-.carre:hover { background-color: #070707;
+.carre:hover { background-color: #000000;
 color: whitesmoke; }
 
 
@@ -75,3 +75,17 @@ align-items: center;
 text-align: center;
 align-self: center;
    }
+
+
+
+h2{
+color: white;
+   }
+img{
+width: 2rem;
+float: right;
+position: absolute;
+ bottom: 5px;
+right: 5px;
+
+}
