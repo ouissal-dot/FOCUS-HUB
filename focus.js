@@ -155,8 +155,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-
-
 // ... game ...
 document.addEventListener('DOMContentLoaded', () => {
 const carre = document.querySelectorAll(".carre");
@@ -273,6 +271,14 @@ function resetPlay(){
 initializeGame();
 
 });
+
+
+
+
+
+
+
+
 
 // ... pamadoro ...
 
