@@ -68,7 +68,6 @@ document.addEventListener('keydown', function(event) {
         display.value += key;
     }
 
-    // (=)
     if (key === "Enter") {
         event.preventDefault(); 
         try {
@@ -78,12 +77,12 @@ document.addEventListener('keydown', function(event) {
         }
     }
 
-    // (DEL)
+    
     if (key === "Backspace") {
         display.value = display.value.toString().slice(0, -1);
     }
 
-    // "Escape"
+   
     if (key === "Escape") {
         display.value = "";
     }
@@ -97,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let minutes = 0;
     let seconds = 0;
     let tens = 0;
-    let Interval; // تعريف المتغير هنا ليكون متاحاً لكل الأزرار
+    let Interval; 
 
     const appendHours = document.querySelector("#hours");
     const appendMinutes = document.querySelector("#minutes");
@@ -155,6 +154,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+
+
 // ... game ...
 document.addEventListener('DOMContentLoaded', () => {
 const carre = document.querySelectorAll(".carre");
@@ -272,13 +274,7 @@ initializeGame();
 
 });
 
-
-
-
-
-
-
-
+// ... pamadoro ...
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -290,8 +286,12 @@ const display = document.getElementById("timer");
 const alarm = document.getElementById("alarm-sound");
 
 
+
+
 let timeLeft = 1500;
 let interval = null;
+
+
 
 
 
@@ -343,6 +343,7 @@ const resetTimer = () => {
 
 
 
+
 start.addEventListener('click', startTimer);
 pause.addEventListener('click', pauseTimer);
 reset.addEventListener('click', resetTimer);
@@ -351,3 +352,80 @@ reset.addEventListener('click', resetTimer);
 
     });
 
+
+
+  
+// ... currency ...
+document.addEventListener('DOMContentLoaded', () => {
+
+
+const amountInput = document.getElementById('amount');
+const fromCurrency = document.getElementById('from');
+const toCurrency = document.getElementById('to-currency');
+const convertBtn = document.getElementById('convert-btn');
+const resultBox = document.getElementById('result-box');
+
+
+
+
+
+
+
+
+
+async function convertCurrency() {
+    const amount = amountInput.value;
+    const from = fromCurrency.value;
+    const to = toCurrency.value;
+
+    if (amount === "" || amount <= 0) {
+        resultBox.innerHTML = `<span class="result-empty">Please enter a valid amount</span>`;
+        return;
+    }
+
+    resultBox.innerHTML = `<span class="result-empty">Converting...</span>`;
+
+    try {
+        
+        const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${from}`);
+        const data = await response.json();
+        
+        const rate = data.rates[to];
+        const convertedAmount = (amount * rate).toFixed(2);
+
+        
+        resultBox.innerHTML = `
+            <div style="color: #fff; font-size: 1.2rem; font-weight: bold;">
+                ${amount} ${from} = ${convertedAmount} ${to}
+            </div>
+        `;
+        
+        
+        fromCurrency.classList.add('selected-active');
+        toCurrency.classList.add('selected-active');
+
+    } catch (error) {
+        resultBox.innerHTML = `<span class="result-empty">Error fetching rates. Try again.</span>`;
+        console.error("Exchange rate error:", error);
+    }
+}
+
+
+convertBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    convertCurrency();
+});
+
+
+[fromCurrency, toCurrency].forEach(select => {
+    select.addEventListener('change', convertCurrency);
+});
+
+
+
+
+
+
+
+
+ });
