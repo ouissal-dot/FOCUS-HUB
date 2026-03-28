@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="photos/focushub.png">
+    <link rel="stylesheet" href="currency.css">
+    <title>Currency Converter </title>
+</head>
+<body>
+
+<div class="box">
+  <h2>Currency Converter</h2>
+ 
+  <div class="input-group">
+ 
+    <div class="label">amount</div>
+    <input type="number" id="amount" placeholder="Enter amount" value="1" min="0">
+ 
+    <div class="currency-row">
+      <div class="currency-col">
+        <div class="label">from</div>
+        <div class="select-wrapper">
+          <select id="from">
+            <option value="USD">🇺🇸 USD</option>
+            <option value="EUR">🇪🇺 EUR</option>
+            <option value="GBP">🇬🇧 GBP</option>
+            <option value="MAD">🇲🇦 MAD</option>
+            <option value="JPY">🇯🇵 JPY</option>
+            <option value="CAD">🇨🇦 CAD</option>
+            <option value="CHF">🇨🇭 CHF</option>
+            <option value="AED">🇦🇪 AED</option>
+            <option value="SAR">🇸🇦 SAR</option>
+          </select>
+          <span class="select">▾</span>
+        </div>
+      </div>
+ 
+      <div class="currency-col">
+        <div class="label">to</div>
+        <div class="select-wrapper">
+          <select id="to-currency">
+            <option value="EUR">🇪🇺 EUR</option>
+            <option value="USD">🇺🇸 USD</option>
+            <option value="GBP">🇬🇧 GBP</option>
+            <option value="MAD">🇲🇦 MAD</option>
+            <option value="JPY">🇯🇵 JPY</option>
+            <option value="CAD">🇨🇦 CAD</option>
+            <option value="CHF">🇨🇭 CHF</option>
+            <option value="AED">🇦🇪 AED</option>
+            <option value="SAR">🇸🇦 SAR</option>
+          </select>
+          <span class="select">▾</span>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="result" id="result-box">
+      <span class="result-empty">Result will appear here…</span>
+    </div>
+ 
+    <button id="convert-btn">Convert</button>
+ 
+  </div>
+</div>
+
+
+
+
+
+<a href="index.html">
+            <img src="photos/home icon.png">
+</a>
+   
+<script src="focus.js"></script>
+</body>
+</html>

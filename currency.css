@@ -1,0 +1,174 @@
+body {
+background: #111111;
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: 'Syne', sans-serif;
+padding: 0;
+margin: 0;
+min-height: 100vh;
+}
+
+
+
+img{
+width: 2rem;
+float: right;
+position: absolute;
+ bottom: 5px;
+right: 5px;
+
+
+}
+
+.box {
+background: #242424;
+border-radius: 10px;
+padding: 0 36px 32px 32px;
+width: 100%;
+max-width: 380px;
+border: 1px solid rgba(110, 110, 110, 0.495);
+box-shadow: 0 4px 50px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+text-align: center;
+font-size: 1.35rem;
+font-weight: 700;
+color: rgb(248, 248, 248);
+margin-bottom: 40px;
+
+
+    }
+
+input{ 
+display: flex;
+flex-direction: column;
+gap: 6px;
+width: min-content;
+color: #f8f8f8;
+
+}
+
+
+#amount {
+width: 92%;
+padding: 12px 14px;
+background: whitesmoke;
+border: 1.5px solid ;
+border-radius: 10px;
+font-family: 'DM Mono', monospace;
+font-size: 0.95rem;
+color: #111;
+outline: none;
+margin-bottom: 40px;
+
+    }
+
+option{
+color: #222;
+}
+
+
+
+
+.select-wrapper {
+position: relative;
+}
+.select {
+position: absolute;
+right: 14px;
+ top: 50%;
+ pointer-events: none;
+color: #ffffff;
+font-size: 0.75rem;
+    }
+
+
+
+select {
+width: 100%;
+padding: 14px 18px;
+background: var(--input-bg);
+border: 1.5px solid #d0d0d0;
+border-radius: 10px;
+font-size: 1rem;
+font-weight: 600;
+color: #222;
+cursor: pointer;
+outline: none;
+appearance: none;
+-webkit-appearance: none;
+    }
+select:focus {
+color: #ffffff; 
+border-color: #ffffff;
+}
+select:valid {
+    color: #ffffff; 
+}
+
+
+
+.label {
+font-size: 0.8rem;
+font-weight: 600;
+color: whitesmoke;
+letter-spacing: 0.06em;
+text-transform: lowercase;
+margin-bottom: 2px;
+}
+
+#convert-btn {
+width: 100%;
+padding: 14px;
+background: #f0f0f0;
+border: none;
+border-radius: 10px;
+font-size: 1.25rem;
+font-weight: 700;
+color: rgb(0, 0, 0);
+cursor: pointer;
+ }
+
+#convert-btn:hover {
+background: #fff;
+box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+}
+
+.result {
+width: 91,5%;
+min-height: 60px;
+background: whitesmoke;
+border: 1.5px solid ;
+border-radius: 10px;
+padding: 12px 15px;
+margin-bottom: 40px;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+justify-content: center;
+gap: 6px;
+color: #222;
+
+    }
+
+.currency-col {
+display: flex;
+flex-direction: column;
+gap: 6px; 
+
+}
+
+.currency-row {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 16px;
+margin-bottom: 40px;
+ }
+#result-box div {
+color: #0d0d0d !important; 
+font-size: 1.5rem;
+font-weight: 700;
+}
+
