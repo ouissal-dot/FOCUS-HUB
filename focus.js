@@ -68,7 +68,6 @@ document.addEventListener('keydown', function(event) {
         display.value += key;
     }
 
-    // (=)
     if (key === "Enter") {
         event.preventDefault(); 
         try {
@@ -78,19 +77,17 @@ document.addEventListener('keydown', function(event) {
         }
     }
 
-    // (DEL)
+    
     if (key === "Backspace") {
         display.value = display.value.toString().slice(0, -1);
     }
 
-    // "Escape"
+   
     if (key === "Escape") {
         display.value = "";
     }
 });
 
-
-/* stopwatch */
 
 /* stopwatch */
 document.addEventListener('DOMContentLoaded', () => {
@@ -99,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let minutes = 0;
     let seconds = 0;
     let tens = 0;
-    let Interval; // تعريف المتغير هنا ليكون متاحاً لكل الأزرار
+    let Interval; 
 
     const appendHours = document.querySelector("#hours");
     const appendMinutes = document.querySelector("#minutes");
@@ -121,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     buttonReset.onclick = function() {
         clearInterval(Interval);
-        // إعادة المتغيرات لأرقام وليس نصوص لتجنب الأخطاء الحسابية لاحقاً
+        
         hours = 0; minutes = 0; seconds = 0; tens = 0;
         appendHours.innerHTML = "00";
         appendMinutes.innerHTML = "00";
@@ -132,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function startTimer() {
         tens++;
 
-        // تنسيق أجزاء الثانية
+        
         appendTens.innerHTML = tens <= 9 ? "0" + tens : tens;
 
         if (tens > 99) {
@@ -160,3 +157,275 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+// ... game ...
+document.addEventListener('DOMContentLoaded', () => {
+const carre = document.querySelectorAll(".carre");
+const statusText = document.querySelector(".status");
+const resetGame = document.querySelector(".reset");
+const winCondition = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+];
+
+let options = ["", "", "", "", "", "", "", "", ""];
+let player = "X";
+let running = false;
+
+function initializeGame(){ 
+
+  carre.forEach(carre => {carre.addEventListener("click", cellClicked )});
+  resetGame.addEventListener("click", resetPlay);
+  statusText.textContent = ` ${player}'s turn`;
+  running = true;
+
+   
+};
+function cellClicked(){ 
+    const cellIndex= this.getAttribute("cellIndex");
+    
+    if (options[cellIndex] != "" || !running || player !== "X"){ 
+        return;
+    }
+    updateCell(this, cellIndex);
+    checkWinner();
+    if (running && player === "O") {
+        setTimeout(computerTurn, 500);
+    }
+
+};
+function updateCell(carre, index){
+    options[index] = player;
+    carre.textContent = player;
+
+ };
+
+function computerTurn(){
+    if (!running) return;
+
+   
+    let availableSpaces = [];
+    options.forEach((val, index) => {
+        if (val === "") {
+            availableSpaces.push(index);
+        }
+    });
+  
+    if (availableSpaces.length > 0) {
+        const randomIndex = availableSpaces[Math.floor(Math.random() * availableSpaces.length)];
+        
+    
+        const targetCell = document.querySelector(`.carre[cellIndex="${randomIndex}"]`);
+        
+   
+        updateCell(targetCell, randomIndex);
+        checkWinner();
+    }
+       
+
+ };
+function checkWinner(){ 
+    let roundWon = false;
+
+    
+    for (let i = 0; i < winCondition.length; i++) {
+        const condition = winCondition[i];
+        const cellA = options[condition[0]];
+        const cellB = options[condition[1]];
+        const cellC = options[condition[2]];
+
+        if (cellA == "" || cellB == "" || cellC == "") continue;
+        
+        if (cellA == cellB && cellB == cellC) {
+            roundWon = true;
+            break;
+        }
+    }
+
+    if (roundWon) {
+        statusText.textContent = `${player} Wins!`;
+        running = false;
+    } else if (!options.includes("")) {
+        statusText.textContent = `Draw!`;
+        running = false;
+    } else {
+        
+        player = (player === "X") ? "O" : "X";
+        statusText.textContent = `${player}'s turn`;
+    }
+
+
+};
+function resetPlay(){ 
+    player = "X";
+    options = ["", "", "", "", "", "", "", "", ""];
+    statusText.textContent = ` ${player}'s turn`;
+    carre.forEach(carre => carre.textContent = "");
+    running = true;
+
+};
+
+initializeGame();
+
+});
+
+// ... pamadoro ...
+
+document.addEventListener('DOMContentLoaded', () => {
+
+
+const reset = document.getElementById("reset");
+const start = document.getElementById("start");
+const pause = document.getElementById("pause");
+const display = document.getElementById("timer");
+const alarm = document.getElementById("alarm-sound");
+
+
+
+
+let timeLeft = 1500;
+let interval = null;
+
+
+
+
+
+function  update () {
+
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+  display.innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+
+};
+
+
+const startTimer = () => {
+  if (interval)  return ;
+
+  interval = setInterval(() => {
+    if (timeLeft > 0) {
+      timeLeft--;
+      update ();
+    } else {
+      clearInterval(interval);
+      alarm.play();
+      alert("Time is up!");
+    }
+  }, 1000);
+
+};
+
+const pauseTimer = () => {
+    clearInterval(interval);
+    interval = null; 
+    alarm.pause();
+
+};
+
+
+const resetTimer = () => {
+    pauseTimer();
+    timeLeft = 1500;
+    update();
+
+};
+
+
+
+
+
+
+
+
+
+start.addEventListener('click', startTimer);
+pause.addEventListener('click', pauseTimer);
+reset.addEventListener('click', resetTimer);
+
+
+
+    });
+
+
+
+  
+// ... currency ...
+document.addEventListener('DOMContentLoaded', () => {
+
+
+const amountInput = document.getElementById('amount');
+const fromCurrency = document.getElementById('from');
+const toCurrency = document.getElementById('to-currency');
+const convertBtn = document.getElementById('convert-btn');
+const resultBox = document.getElementById('result-box');
+
+
+
+
+
+
+
+
+
+async function convertCurrency() {
+    const amount = amountInput.value;
+    const from = fromCurrency.value;
+    const to = toCurrency.value;
+
+    if (amount === "" || amount <= 0) {
+        resultBox.innerHTML = `<span class="result-empty">Please enter a valid amount</span>`;
+        return;
+    }
+
+    resultBox.innerHTML = `<span class="result-empty">Converting...</span>`;
+
+    try {
+        
+        const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${from}`);
+        const data = await response.json();
+        
+        const rate = data.rates[to];
+        const convertedAmount = (amount * rate).toFixed(2);
+
+        
+        resultBox.innerHTML = `
+            <div style="color: #fff; font-size: 1.2rem; font-weight: bold;">
+                ${amount} ${from} = ${convertedAmount} ${to}
+            </div>
+        `;
+        
+        
+        fromCurrency.classList.add('selected-active');
+        toCurrency.classList.add('selected-active');
+
+    } catch (error) {
+        resultBox.innerHTML = `<span class="result-empty">Error fetching rates. Try again.</span>`;
+        console.error("Exchange rate error:", error);
+    }
+}
+
+
+convertBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    convertCurrency();
+});
+
+
+[fromCurrency, toCurrency].forEach(select => {
+    select.addEventListener('change', convertCurrency);
+});
+
+
+
+
+
+
+
+
+ });
