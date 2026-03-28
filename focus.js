@@ -427,5 +427,161 @@ convertBtn.addEventListener('click', (e) => {
 
 
 
+})
 
- });
+
+
+
+
+
+
+
+
+
+// ... WEATHER ...
+
+document.addEventListener('DOMContentLoaded', () => {
+
+
+const API_KEY = "9b4423adba00e6e8366ae97840b3c1ed";
+const API_URL = "https://api.openweathermap.org/data/2.5/weather";
+
+
+ const input     = document.querySelector(".search-bar input");
+const searchBtn = document.querySelector(".search-bar img");
+const weatherIcon  = document.querySelector(".weather-icon");
+const tempEl       = document.querySelector(".temp");
+const cityEl       = document.querySelector(".city");
+const humidityEl   = document.querySelector(".detail-item:nth-child(1) .detail-value");
+const windEl       = document.querySelector(".detail-item:nth-child(2) .detail-value");
+
+
+
+
+
+
+
+
+function getWeatherEmoji(conditionCode) {
+  if (conditionCode >= 200 && conditionCode < 300) return "⛈️";       
+  if (conditionCode >= 300 && conditionCode < 400) return "🌦️";        
+  if (conditionCode >= 500 && conditionCode < 600) return "🌧️";   
+
+  if (conditionCode >= 600 && conditionCode < 700) return "❄️";      
+  if (conditionCode >= 700 && conditionCode < 800) return "🌫️";  
+
+  if (conditionCode === 800)                        return "☀️";   
+
+  if (conditionCode === 801)                        return "🌤️";         
+  if (conditionCode === 802)                        return "⛅";          
+  if (conditionCode >= 803)                         return "☁️";         
+  return "⛅🌧️";
+}
+
+
+
+function setLoading(on) {
+  if (on) {
+    weatherIcon.textContent = "⏳";
+    tempEl.textContent      = "--°c";
+    cityEl.textContent      = "Loading...";
+    humidityEl.textContent  = "--%";
+    windEl.textContent      = "-- km/h";
+  }
+}
+
+   function setError(message) {
+    weatherIcon.textContent = "❓";
+    tempEl.textContent      = "--°c";
+    cityEl.textContent      = message;
+    humidityEl.textContent  = "--%";
+    windEl.textContent      = "-- km/h";
+  }
+
+async function fetchWeather(city) {
+  if (!city.trim()) return;
+ 
+  setLoading(true);
+ 
+  try {
+    const response = await fetch(
+      `${API_URL}?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`
+    );
+ 
+    if (response.status === 404) {
+      setError("City not found");
+      return;
+    }
+ 
+    if (response.status === 401) {
+      setError("Invalid API key");
+      return;
+    }
+ 
+    if (!response.ok) {
+      setError("Something went wrong");
+      return;
+    }
+ 
+    const data = await response.json();
+    updateUI(data);
+ 
+  } catch (error) {
+    setError("Network error");
+    console.error("Weather fetch error:", error);
+  }
+}
+ 
+
+function updateUI(data) {
+  const temp      = Math.round(data.main.temp);
+  const city      = data.name;
+  const humidity  = data.main.humidity;
+  const windSpeed = (data.wind.speed * 3.6).toFixed(2); 
+  const condCode  = data.weather[0].id;
+ 
+  weatherIcon.textContent = getWeatherEmoji(condCode);
+  tempEl.textContent      = `${temp}°c`;
+  cityEl.textContent      = city;
+  humidityEl.textContent  = `${humidity}%`;
+  windEl.textContent      = `${windSpeed} km/h`;
+}
+ 
+
+ 
+
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    fetchWeather(input.value);
+  }
+});
+ 
+
+searchBtn.addEventListener("click", () => {
+  fetchWeather(input.value);
+});
+ 
+
+fetchWeather(input.value || "Germany");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+})
