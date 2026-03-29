@@ -100,9 +100,7 @@ const API_KEY = "YOUR_OPENWEATHERMAP_KEY";
 const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${from}`);
 ```
 
-> ⚠️ Never commit real API keys to a public repository. Use environment variables or a backend proxy for production.
 
----
 
 ## 🌍 Multilingual Support
 
@@ -133,12 +131,6 @@ All pages are responsive and tested on:
 
 ---
 
-## 👤 Author
 
-Made with ❤️ — feel free to fork, star ⭐, and contribute!
 
----
 
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
