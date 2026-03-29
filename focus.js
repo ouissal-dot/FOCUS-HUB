@@ -433,14 +433,9 @@ convertBtn.addEventListener('click', (e) => {
 
 
 
-})
+});
 
-<<<<<<< HEAD
-
-
-=======
- });
->>>>>>> feature/weatherapp
+ 
 
 
 
@@ -572,9 +567,6 @@ searchBtn.addEventListener("click", () => {
 });
  
 
-<<<<<<< HEAD
-fetchWeather(input.value || "Germany");
-=======
 fetchWeather(input.value || "germany");
 
 
@@ -776,7 +768,6 @@ renderList();
 
 
 
->>>>>>> feature/weatherapp
 
 
 
@@ -798,7 +789,3 @@ renderList();
 
 
 
-<<<<<<< HEAD
-})
-=======
->>>>>>> feature/weatherapp
