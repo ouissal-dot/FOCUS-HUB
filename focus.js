@@ -598,160 +598,113 @@ fetchWeather(input.value || "germany");
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  // ... todolist ...
 
-document.addEventListener('DOMContentLoaded', () => {
-
-
-
-let tasks = [];
+let tasks         = [];
 let selectedIndex = null;
-
-
-const inputBox = document.getElementById("input-box");
-const listContainer = document.getElementById("list-container");
-const completedCounter = document.getElementById("completed-counter");
-const uncompletedCounter = document.getElementById("uncompleted-counter");
-
-
+ 
 function addTask() {
-  const taskText = inputBox.value.trim();
-  if (taskText === "") {
-    alert("Please enter a task.");
-    return;
-  }
-
-  tasks.push({ text: taskText, completed: false });
-  inputBox.value = "";
-  selectedIndex = null;
-  renderList();
+    const inputBox       = document.getElementById("input-box");
+    const listContainer  = document.getElementById("list-container");
+    if (!inputBox || !listContainer) return;
+ 
+    const taskText = inputBox.value.trim();
+    if (taskText === "") { alert("Please enter a task."); return; }
+ 
+    tasks.push({ text: taskText, completed: false });
+    inputBox.value = "";
+    selectedIndex  = null;
+    renderList();
 }
-
-
-inputBox.addEventListener("keydown", function (e) {
-  if (e.key === "Enter") addTask();
-});
-
-
+ 
 function deleteTask(index) {
-  tasks.splice(index, 1);
-  if (selectedIndex === index) selectedIndex = null;
-  renderList();
+    tasks.splice(index, 1);
+    if (selectedIndex === index) selectedIndex = null;
+    renderList();
 }
-
-
+ 
 function editTask(index) {
-  const newText = prompt("Edit your task:", tasks[index].text);
-  if (newText === null) return;         // cancelled
-  if (newText.trim() === "") {
-    alert("Task cannot be empty.");
-    return;
-  }
-  tasks[index].text = newText.trim();
-  renderList();
+    const newText = prompt("Edit your task:", tasks[index].text);
+    if (newText === null) return;
+    if (newText.trim() === "") { alert("Task cannot be empty."); return; }
+    tasks[index].text = newText.trim();
+    renderList();
 }
-
-
+ 
 function toggleComplete(index) {
-  tasks[index].completed = !tasks[index].completed;
-  renderList();
+    tasks[index].completed = !tasks[index].completed;
+    renderList();
 }
-
-
+ 
 function selectTask(index) {
-  selectedIndex = selectedIndex === index ? null : index;
-  renderList();
+    selectedIndex = selectedIndex === index ? null : index;
+    renderList();
 }
-
-
+ 
 function updateCounters() {
-  const completed = tasks.filter((t) => t.completed).length;
-  const uncompleted = tasks.length - completed;
-  completedCounter.textContent = completed;
-  uncompletedCounter.textContent = uncompleted;
+    const completedCounter   = document.getElementById("completed-counter");
+    const uncompletedCounter = document.getElementById("uncompleted-counter");
+    if (!completedCounter) return;
+    const completed = tasks.filter(t => t.completed).length;
+    completedCounter.textContent   = completed;
+    uncompletedCounter.textContent = tasks.length - completed;
 }
-
-
+ 
 function renderList() {
-  listContainer.innerHTML = "";
-
-  tasks.forEach((task, index) => {
-    const li = document.createElement("li");
-
-    
-    if (index === selectedIndex) li.classList.add("selected");
-
-    
-    if (task.completed) li.classList.add("completed");
-
-    
-    li.addEventListener("click", function (e) {
-      
-      if (
-        e.target.classList.contains("delete-btn") ||
-        e.target.classList.contains("edit-btn") ||
-        e.target.type === "checkbox"
-      ) return;
-      selectTask(index);
+    const listContainer = document.getElementById("list-container");
+    if (!listContainer) return;
+    listContainer.innerHTML = "";
+ 
+    tasks.forEach((task, index) => {
+        const li = document.createElement("li");
+        if (index === selectedIndex) li.classList.add("selected");
+        if (task.completed)          li.classList.add("completed");
+ 
+        li.addEventListener("click", function (e) {
+            if (e.target.classList.contains("delete-btn") ||
+                e.target.classList.contains("edit-btn")   ||
+                e.target.type === "checkbox") return;
+            selectTask(index);
+        });
+ 
+        const checkbox   = document.createElement("input");
+        checkbox.type    = "checkbox";
+        checkbox.checked = task.completed;
+        checkbox.addEventListener("change", () => toggleComplete(index));
+ 
+        const label = document.createElement("label");
+        const span  = document.createElement("span");
+        span.textContent = task.text;
+        label.appendChild(checkbox);
+        label.appendChild(span);
+ 
+        const editBtn = document.createElement("span");
+        editBtn.textContent = "Edit";
+        editBtn.classList.add("edit-btn");
+        editBtn.addEventListener("click", () => editTask(index));
+ 
+        const deleteBtn = document.createElement("span");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.classList.add("delete-btn");
+        deleteBtn.addEventListener("click", () => deleteTask(index));
+ 
+        li.appendChild(label);
+        li.appendChild(deleteBtn);
+        li.appendChild(editBtn);
+        listContainer.appendChild(li);
     });
-
-    
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.checked = task.completed;
-    checkbox.addEventListener("change", () => toggleComplete(index));
-
-   
-    const label = document.createElement("label");
-    const span = document.createElement("span");
-    span.textContent = task.text;
-    label.appendChild(checkbox);
-    label.appendChild(span);
-
-    
-    const editBtn = document.createElement("span");
-    editBtn.textContent = "Edit";
-    editBtn.classList.add("edit-btn");
-    editBtn.addEventListener("click", () => editTask(index));
-
-   
-    const deleteBtn = document.createElement("span");
-    deleteBtn.textContent = "Delete";
-    deleteBtn.classList.add("delete-btn");
-    deleteBtn.addEventListener("click", () => deleteTask(index));
-
-    li.appendChild(label);
-    li.appendChild(deleteBtn);
-    li.appendChild(editBtn);
-
-    listContainer.appendChild(li);
-  });
-
-  updateCounters();
+ 
+    updateCounters();
 }
+ 
 
-
-renderList();
-
-
-
-
- });
-
+document.addEventListener('DOMContentLoaded', () => {
+    const inputBox = document.getElementById("input-box");
+    if (!inputBox) return;
+    inputBox.addEventListener("keydown", (e) => { if (e.key === "Enter") addTask(); });
+    renderList();
+});
+ 
 
 
 
