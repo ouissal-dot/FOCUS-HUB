@@ -129,8 +129,5 @@ All pages are responsive and tested on:
 - [ ] Save tasks to localStorage
 - [ ] Pomodoro session history
 
----
-
-
 
 
